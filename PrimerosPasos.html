@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeros Pasos - Manual de Usuario</title>
+    <style>
+        /* Variables de colores */
+        :root {
+            --primary-color: #2c3e50;       /* Azul oscuro elegante */
+--primary-dark: #1a252f;        /* Variante más oscura para efectos */
+--secondary-color: #7f8c8d;     /* Gris sofisticado */
+--accent-color: #c0392b;        /* Rojo vino para detalles sutiles */
+--text-color: #2d2d2d;          /* Texto principal, muy legible */
+--text-light: #5c5c5c;          /* Texto secundario */
+--light-bg: #f4f4f4;            /* Fondo suave */
+--white: #ffffff;               /* Blanco puro */
+--border-color: #dcdcdc;        /* Gris claro para bordes */
+--shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Sombra más sutil */
+
+        }
+
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Encabezado */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .version {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Navegación */
+        nav {
+            background-color: var(--primary-dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li a {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 20px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul li a.active {
+            font-weight: bold;
+            border-bottom: 3px solid var(--white);
+        }
+
+        /* Migas de pan */
+        .breadcrumbs {
+            margin: 20px 0;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Contenido principal */
+        main {
+            padding: 20px 0 40px;
+        }
+
+        .section {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-top: 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Contenido de navegación */
+        .content-nav {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .content-nav h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .content-nav ul {
+            margin-bottom: 0;
+        }
+
+        /* Pasos */
+        .steps-container {
+            margin: 30px 0;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .step:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .step-number {
+            flex: 0 0 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        /* Imagen */
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .caption {
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Notas y advertencias */
+        .note, .tip, .warning {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .note {
+            background-color: #e7f5fe;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .tip {
+            background-color: #eafaf1;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .warning {
+            background-color: #fff5e6;
+            border-left: 4px solid #f39c12;
+        }
+
+        .resources {
+        background-color: var(--white);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        padding: 30px;
+      }
+
+      .resources h2 {
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
+
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .resource-item {
+        text-align: center;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: var(--light-bg);
+        transition: transform 0.3s;
+      }
+
+      .resource-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .resource-icon {
+        font-size: 36px;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+      }
+
+        /* Atajos de teclado */
+        kbd {
+            display: inline-block;
+            padding: 3px 6px;
+            font-family: monospace;
+            background-color: var(--light-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+
+        /* Elementos de UI */
+        .ui-elements {
+            margin: 30px 0;
+        }
+
+        .ui-element {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ui-element:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 40px 0 20px;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            margin-top: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            color: var(--white);
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        footer h3 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        footer ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: var(--white);
+            opacity: 0.8;
+        }
+
+        footer a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            .step {
+                flex-direction: column;
+            }
+
+            .step-number {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Sistema BDK</div>
+            <div class="version">Manual de Usuario v1.0</div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Introduccion.html">Introducción</a></li>
+                <li><a href="PrimerosPasos.html"class="active">Primeros Pasos</a></li>
+                <li><a href="FuncionesPrincipales.html">Funciones</a></li>
+                <li><a href="Tutoriales.html">Tutoriales</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Inicio</a> &gt; Primeros Pasos
+        </div>
+
+        <section class="section">
+            <h2 id="instalacion">Instalación del Sistema</h2>
+<p>Requisitos previos para la instalación:</p>
+
+<div class="steps-container">
+    <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+            <h3>Descargar Instalador</h3>
+            <ul>
+                <li>Acceda al portal de descargas autorizado del sistema</li>
+                <li>Ubique la sección de descargas para el sistema BDK</li>
+                <li>Descargue el archivo <strong>BDK_Instalador.exe</strong> a su computadora</li>
+            </ul>
+            <div class="note">
+                <strong>Requisitos Mínimos:</strong> Windows Server 2016 o superior, SQL Server 2016+, 8 GB de RAM, 50 GB de espacio en disco
+            </div>
+        </div>
+    </div>
+
+    <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+            <h3>Ejecutar Instalador</h3>
+            <ul>
+                <li>Haga clic derecho sobre <strong>BDK_Instalador.exe</strong> y seleccione <em>Ejecutar como administrador</em></li>
+                <li>Acepte los términos y condiciones de uso</li>
+                <li>Siga los pasos del asistente de instalación para seleccionar los componentes a instalar:
+                    <ul>
+                        <li>Servidor de aplicaciones</li>
+                        <li>Consola administrativa</li>
+                        <li>Clientes de estación de trabajo</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<section class="resources">
+    <h2>Recursos Adicionales</h2>
+    <div class="resources-grid">
+      <div class="resource-item">
+        <div class="resource-icon">🎬</div>
+        <h3>Tutoriales en Video</h3>
+        <a href="Tutoriales.html">Ver videos</a>
+      </div>
+    </div>
+  </section>
+        </section>
+    </main>
+
+
+    <footer>
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-column">
+              <h3>Gestión del adulto mayor</h3>
+              <p>
+                Una solución completa para gestionar los residentes de manera
+                eficiente.
+              </p>
+              <p>Versión 1.0</p>
+            </div>
+  
+            <div class="footer-column">
+              <h3>Recursos</h3>
+              <ul>
+                <li><a href="pdf/Manual de uso App.pdf">Descargas</a></li>
+                <li><a href="pdf/Manual de uso App.pdf">Documentación</a></li>
+                <li><a href="Tutoriales.html">Tutoriales en Video</a></li>
+              </ul>
+            </div>
+  
+            <div class="footer-column">
+              <h3>Soporte</h3>
+              <ul>
+                <li><a href="PreguntasFrecunetes.html">Preguntas Frecuentes</a></li>
+                <li><a href="https://wa.me/50661636422" target="_blank">WhatsApp</a></li>
+              </ul>
+            </div>
+  
+           
+          </div>
+  
+          <div class="copyright">
+            <p>
+              &copy; 2025 Gestión Del Adulto Mayor. Todos los derechos reservados.
+            </p>
+          </div>
+        </div>
+      </footer>
+</body>
+</html>

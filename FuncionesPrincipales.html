@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Principales - SeniorCare Manager</title>
+    <style>
+        /* Variables de colores */
+        :root {
+          --primary-color: #2c3e50; /* Azul oscuro elegante */
+          --primary-dark: #1a252f; /* Variante más oscura para efectos */
+          --secondary-color: #7f8c8d; /* Gris sofisticado */
+          --accent-color: #c0392b; /* Rojo vino para detalles sutiles */
+          --text-color: #2d2d2d; /* Texto principal, muy legible */
+          --text-light: #5c5c5c; /* Texto secundario */
+          --light-bg: #f4f4f4; /* Fondo suave */
+          --white: #ffffff; /* Blanco puro */
+          --border-color: #dcdcdc; /* Gris claro para bordes */
+          --shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Sombra más sutil */
+        }
+  
+        /* Estilos generales */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+  
+        body {
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          line-height: 1.6;
+          color: var(--text-color);
+          background-color: var(--light-bg);
+        }
+  
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+  
+        a {
+          color: var(--primary-color);
+          text-decoration: none;
+          transition: color 0.3s;
+        }
+  
+        a:hover {
+          color: var(--primary-dark);
+        }
+
+        .steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.step:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+}
+
+.step-number {
+  background-color: var(--accent-color);
+  color: var(--white);
+  font-size: 20px;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-content h3 {
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.step-content ul {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.image-container {
+  margin-top: 10px;
+}
+
+.image-container img {
+  max-width: 100%;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  margin-bottom: 5px;
+}
+
+.caption {
+  font-size: 14px;
+  color: var(--text-light);
+  text-align: center;
+}
+.content-nav {
+  margin: 30px 0;
+  padding: 20px;
+  background-color: var(--white);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.content-nav h3 {
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.content-nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.content-nav ul li {
+  margin-bottom: 8px;
+}
+
+.content-nav ul li a {
+  font-weight: 500;
+  color: var(--primary-color);
+  transition: all 0.3s;
+}
+
+.content-nav ul li a:hover {
+  text-decoration: underline;
+  color: var(--accent-color);
+}
+.breadcrumbs {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.breadcrumbs a {
+  color: var(--primary-color);
+  font-weight: 500;
+} 
+
+        /* Encabezado */
+        header {
+          background-color: var(--primary-color);
+          color: var(--white);
+          padding: 20px 0;
+          box-shadow: var(--shadow);
+        }
+  
+        header .container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+  
+        .logo {
+          font-size: 24px;
+          font-weight: bold;
+        }
+  
+        .version {
+          font-size: 16px;
+          opacity: 0.9;
+        }
+  
+        /* Navegación */
+        nav {
+          background-color: var(--primary-dark);
+          position: sticky;
+          top: 0;
+          z-index: 100;
+        }
+  
+        nav ul {
+          display: flex;
+          list-style: none;
+        }
+  
+        nav ul li a {
+          display: block;
+          color: var(--white);
+          text-decoration: none;
+          padding: 15px 20px;
+          transition: background-color 0.3s;
+        }
+  
+        nav ul li a:hover,
+        nav ul li a.active {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+  
+        nav ul li a.active {
+          font-weight: bold;
+          border-bottom: 3px solid var(--white);
+        }
+  
+        /* Contenido principal */
+        main {
+          padding: 40px 0;
+        }
+  
+        /* Sección de héroe */
+        .hero {
+          background-color: var(--white);
+          border-radius: 8px;
+          box-shadow: var(--shadow);
+          padding: 60px 40px;
+          text-align: center;
+          margin-bottom: 40px;
+        }
+  
+        .hero h1 {
+          font-size: 36px;
+          margin-bottom: 20px;
+          color: var(--primary-color);
+        }
+  
+        .hero p {
+          font-size: 18px;
+          color: var(--text-light);
+          max-width: 800px;
+          margin: 0 auto 30px;
+        }
+  
+        .btn {
+          display: inline-block;
+          background-color: var(--primary-color);
+          color: var(--white);
+          padding: 12px 24px;
+          border-radius: 4px;
+          font-weight: 600;
+          transition: background-color 0.3s;
+          margin: 0 10px;
+        }
+  
+        .btn:hover {
+          background-color: var(--primary-dark);
+          color: var(--white);
+        }
+  
+        .btn.secondary {
+          background-color: var(--secondary-color);
+        }
+  
+        .btn.secondary:hover {
+          background-color: #27ae60;
+        }
+  
+        /* Secciones del manual */
+        .manual-sections {
+          margin-bottom: 40px;
+        }
+  
+        .section-title {
+          text-align: center;
+          margin-bottom: 40px;
+          position: relative;
+        }
+  
+        .section-title h2 {
+          font-size: 28px;
+          display: inline-block;
+          background-color: var(--light-bg);
+          padding: 0 20px;
+          position: relative;
+          z-index: 1;
+          color: var(--primary-color);
+        }
+  
+        .section-title::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background-color: var(--border-color);
+          z-index: 0;
+        }
+  
+        .card-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 30px;
+        }
+  
+        .card {
+          background-color: var(--white);
+          border-radius: 8px;
+          box-shadow: var(--shadow);
+          transition: transform 0.3s, box-shadow 0.3s;
+          overflow: hidden;
+        }
+  
+        .card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+  
+        .card-icon {
+          height: 120px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: var(--primary-color);
+          color: var(--white);
+          font-size: 48px;
+        }
+  
+        .card:nth-child(2n) .card-icon {
+          background-color: var(--secondary-color);
+        }
+  
+        .card:nth-child(3n) .card-icon {
+          background-color: var(--accent-color);
+        }
+  
+        .card-content {
+          padding: 20px;
+        }
+  
+        .card h3 {
+          margin-bottom: 10px;
+          font-size: 20px;
+        }
+  
+        .card p {
+          color: var(--text-light);
+          margin-bottom: 15px;
+        }
+  
+        .card-link {
+          display: inline-block;
+          color: var(--primary-color);
+          font-weight: 600;
+        }
+  
+        .card-link:hover {
+          text-decoration: underline;
+        }
+  
+        /* Actualizaciones recientes */
+        .updates {
+          background-color: var(--white);
+          border-radius: 8px;
+          box-shadow: var(--shadow);
+          padding: 30px;
+          margin-bottom: 40px;
+        }
+  
+        .updates h2 {
+          margin-bottom: 20px;
+          color: var(--primary-color);
+        }
+  
+        .update-item {
+          display: flex;
+          margin-bottom: 20px;
+          padding-bottom: 20px;
+          border-bottom: 1px solid var(--border-color);
+        }
+  
+        .update-item:last-child {
+          margin-bottom: 0;
+          padding-bottom: 0;
+          border-bottom: none;
+        }
+  
+        .update-date {
+          flex: 0 0 120px;
+          font-weight: 600;
+          color: var(--text-light);
+        }
+  
+        .update-content {
+          flex: 1;
+        }
+  
+        .update-content h3 {
+          margin-top: 0;
+          margin-bottom: 10px;
+        }
+  
+        /* Recursos adicionales */
+        .resources {
+          background-color: var(--white);
+          border-radius: 8px;
+          box-shadow: var(--shadow);
+          padding: 30px;
+        }
+  
+        .resources h2 {
+          margin-bottom: 20px;
+          color: var(--primary-color);
+        }
+  
+        .resources-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 20px;
+        }
+  
+        .resource-item {
+          text-align: center;
+          padding: 20px;
+          border-radius: 8px;
+          background-color: var(--light-bg);
+          transition: transform 0.3s;
+        }
+  
+        .resource-item:hover {
+          transform: translateY(-5px);
+        }
+  
+        .resource-icon {
+          font-size: 36px;
+          margin-bottom: 10px;
+          color: var(--primary-color);
+        }
+  
+        /* Pie de página */
+        footer {
+          background-color: var(--primary-dark);
+          color: var(--white);
+          padding: 40px 0 20px;
+          margin-top: 60px;
+        }
+  
+        .footer-content {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 30px;
+          margin-bottom: 30px;
+        }
+  
+        footer h3 {
+          color: var(--white);
+          margin-bottom: 15px;
+          font-size: 18px;
+        }
+  
+        footer ul {
+          list-style: none;
+        }
+  
+        footer ul li {
+          margin-bottom: 10px;
+        }
+  
+        footer a {
+          color: var(--white);
+          opacity: 0.8;
+        }
+  
+        footer a:hover {
+          opacity: 1;
+          text-decoration: underline;
+        }
+  
+        .copyright {
+          text-align: center;
+          padding-top: 20px;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          font-size: 14px;
+          opacity: 0.8;
+        }
+  
+      /* Media Queries Responsivas */
+@media (max-width: 1024px) {
+    .steps-container {
+        gap: 30px;
+    }
+    
+    .step {
+        padding: 15px;
+    }
+    
+    .step-number {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 20px;
+    }
+    
+    .version {
+        font-size: 14px;
+    }
+    
+    nav ul li a {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .breadcrumbs {
+        font-size: 12px;
+    }
+    
+    .step {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .step-content {
+        width: 100%;
+    }
+    
+    .content-nav {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+    
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    .step-content h3 {
+        font-size: 18px;
+    }
+    
+    .image-container .caption {
+        font-size: 12px;
+    }
+    
+    .tip, .note {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 360px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .logo {
+        font-size: 18px;
+    }
+    
+    nav ul li a {
+        padding: 10px 12px;
+    }
+    
+    .step-number {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .step-content h3 {
+        font-size: 16px;
+    }
+    
+    .content-nav ul li {
+        font-size: 14px;
+    }
+}
+
+/* Optimización de listas */
+@media (max-width: 480px) {
+    .step-content ul {
+        padding-left: 15px;
+    }
+    
+    .step-content li {
+        font-size: 14px;
+    }
+}
+
+/* Ajustes de imágenes */
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .image-container {
+        margin-top: 15px;
+    }
+}
+
+/* Footer responsive */
+@media (max-width: 600px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .footer-column {
+        margin-bottom: 20px;
+    }
+}
+
+/* Mejora de hover en móviles */
+@media (hover: none) {
+    .step:hover {
+        transform: none;
+        box-shadow: var(--shadow);
+    }
+}
+      </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Sistema BDK</div>
+            <div class="version">Manual de Usuario v1.0</div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="Introduccion.html">Introducción</a></li>
+              <li><a href="PrimerosPasos.html">Primeros Pasos</a></li>
+              <li><a href="FuncionesPrincipales.html"class="active">Funciones</a></li>
+              <li><a href="Tutoriales.html">Tutoriales</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Inicio</a> &gt; Funciones Principales
+        </div>
+
+        <section class="section">
+            <h1>Funcionalidades Clave del Sistema</h1>
+            <p>Descubra las principales características diseñadas para optimizar la gestión del Centro.</p>
+            
+            <div class="content-nav">
+                <h3>En esta sección:</h3>
+                <ul>
+                    <li><a href="#residentes">Gestión de Residentes</a></li>
+                    <li><a href="#medica">Historial Médico</a></li>
+                    <li><a href="#emergencia">Contactos de Emergencia</a></li>
+                    <li><a href="#reportes">Generación de Reportes</a></li>
+                </ul>
+            </div>
+            
+            <h2 id="residentes">Gestión de Información Personal de los Residentes</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Registro Completo</h3>
+                        <ul>
+                            <li>Registro de nuevos residentes con datos personales completos (nombre, fecha de nacimiento, género, número de identificación, etc.).</li>
+                            <li>Consulta y edición del historial de cada residente.</li>
+                            <li>Información de contacto y familiares</li>
+                        </ul>
+                        <div class="image-container">
+                            <img src="Img/image.png" alt="Formulario de registro">
+                            <p class="caption">Interfaz de registro de residentes</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Actualización de Información</h3>
+                        <ul>
+                            <li>Edición de datos en tiempo real</li>
+                            <li>Historial de cambios auditado</li>
+                            <li>Subida de documentos adjuntos</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Consejo:</strong> Utilice el escáner de documentos para digitalizar rápidamente los documentos
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 id="medica">Administración de Medicamentos</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Registro de medicamentos</h3>
+                        <ul>
+                            <li>Registro de medicamentos</li>
+                            <li>Asignacion de medicamentos</li>
+                        </ul>
+                        <div class="image-container">
+                          <img src="Img/medicamentos.png" alt="Formulario de registro">
+                          <p class="caption">Interfaz de medicamentos</p>
+                      </div>
+                    </div>
+                </div>
+                
+            
+            <h2 id="emergencia">Contactos de Emergencia</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Contactos de Emergencia</h3>
+                        <ul>
+                            <li>Registro de contactos importantes con información como nombre, relación con el residente, dirección y número telefónico.</li>
+                            <li>Acceso rápido a los contactos en caso de situaciones de emergencia.</li>
+                            <li>Posibilidad de registrar múltiples contactos por residente.</li>
+                        </ul>
+                        <div class="image-container">
+                          <img src="Img/contactosdeE.png" alt="Formulario de registro">
+                          <p class="caption">Interfaz de contectos de emergencia</p>
+                      </div>
+                    </div>
+                </div>
+                
+            
+            
+            
+            <h2 id="reportes">Generación de Reportes</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Reportes Preconfigurados</h3>
+                        <ul>
+                            <li>Exportación de listados de residentes.</li>
+                            <li>Visualización general del estado actual de los residentes para facilitar la toma de decisiones.</li>
+                        </ul>
+                        <div class="image-container">
+                          <img src="Img/Reportes.png" alt="Formulario de registro">
+                          <p class="caption">Interfaz de contectos de emergencia</p>
+                      </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>Gestión del adulto mayor</h3>
+            <p>
+              Una solución completa para gestionar los residentes de manera
+              eficiente.
+            </p>
+            <p>Versión 1.0</p>
+          </div>
+
+          <div class="footer-column">
+            <h3>Recursos</h3>
+            <ul>
+              <li><a href="pdf/Manual de uso App.pdf">Descargas</a></li>
+              <li><a href="pdf/Manual de uso App.pdf">Documentación</a></li>
+              <li><a href="Tutoriales.html">Tutoriales en Video</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Soporte</h3>
+            <ul>
+              <li><a href="PreguntasFrecunetes.html">Preguntas Frecuentes</a></li>
+              <li><a href="https://wa.me/50661636422" target="_blank">WhatsApp</a></li>
+            </ul>
+          </div>
+
+         
+        </div>
+
+        <div class="copyright">
+          <p>
+            &copy; 2025 Gestión Del Adulto Mayor. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

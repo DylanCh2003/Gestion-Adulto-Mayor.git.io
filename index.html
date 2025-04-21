@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manual de Usuario - Índice</title>
+    <style>
+      /* Variables de colores */
+      :root {
+        --primary-color: #2c3e50; /* Azul oscuro elegante */
+        --primary-dark: #1a252f; /* Variante más oscura para efectos */
+        --secondary-color: #7f8c8d; /* Gris sofisticado */
+        --accent-color: #c0392b; /* Rojo vino para detalles sutiles */
+        --text-color: #2d2d2d; /* Texto principal, muy legible */
+        --text-light: #5c5c5c; /* Texto secundario */
+        --light-bg: #f4f4f4; /* Fondo suave */
+        --white: #ffffff; /* Blanco puro */
+        --border-color: #dcdcdc; /* Gris claro para bordes */
+        --shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Sombra más sutil */
+      }
+
+      /* Estilos generales */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--light-bg);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      a:hover {
+        color: var(--primary-dark);
+      }
+
+      /* Encabezado */
+      header {
+        background-color: var(--primary-color);
+        color: var(--white);
+        padding: 20px 0;
+        box-shadow: var(--shadow);
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .version {
+        font-size: 16px;
+        opacity: 0.9;
+      }
+
+      /* Navegación */
+      nav {
+        background-color: var(--primary-dark);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+
+      nav ul li a {
+        display: block;
+        color: var(--white);
+        text-decoration: none;
+        padding: 15px 20px;
+        transition: background-color 0.3s;
+      }
+
+      nav ul li a:hover,
+      nav ul li a.active {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      nav ul li a.active {
+        font-weight: bold;
+        border-bottom: 3px solid var(--white);
+      }
+
+      /* Contenido principal */
+      main {
+        padding: 40px 0;
+      }
+
+      /* Sección de héroe */
+      .hero {
+        background-color: var(--white);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        padding: 60px 40px;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
+
+      .hero p {
+        font-size: 18px;
+        color: var(--text-light);
+        max-width: 800px;
+        margin: 0 auto 30px;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: var(--white);
+        padding: 12px 24px;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: background-color 0.3s;
+        margin: 0 10px;
+      }
+
+      .btn:hover {
+        background-color: var(--primary-dark);
+        color: var(--white);
+      }
+
+      .btn.secondary {
+        background-color: var(--secondary-color);
+      }
+
+      .btn.secondary:hover {
+        background-color: #27ae60;
+      }
+
+      /* Secciones del manual */
+      .manual-sections {
+        margin-bottom: 40px;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .section-title h2 {
+        font-size: 28px;
+        display: inline-block;
+        background-color: var(--light-bg);
+        padding: 0 20px;
+        position: relative;
+        z-index: 1;
+        color: var(--primary-color);
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: var(--border-color);
+        z-index: 0;
+      }
+
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .card {
+        background-color: var(--white);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s, box-shadow 0.3s;
+        overflow: hidden;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-icon {
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--primary-color);
+        color: var(--white);
+        font-size: 48px;
+      }
+
+      .card:nth-child(2n) .card-icon {
+        background-color: var(--secondary-color);
+      }
+
+      .card:nth-child(3n) .card-icon {
+        background-color: var(--accent-color);
+      }
+
+      .card-content {
+        padding: 20px;
+      }
+
+      .card h3 {
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      .card p {
+        color: var(--text-light);
+        margin-bottom: 15px;
+      }
+
+      .card-link {
+        display: inline-block;
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      .card-link:hover {
+        text-decoration: underline;
+      }
+
+      /* Actualizaciones recientes */
+      .updates {
+        background-color: var(--white);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        padding: 30px;
+        margin-bottom: 40px;
+      }
+
+      .updates h2 {
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
+
+      .update-item {
+        display: flex;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .update-item:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .update-date {
+        flex: 0 0 120px;
+        font-weight: 600;
+        color: var(--text-light);
+      }
+
+      .update-content {
+        flex: 1;
+      }
+
+      .update-content h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+
+      /* Recursos adicionales */
+      .resources {
+        background-color: var(--white);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        padding: 30px;
+      }
+
+      .resources h2 {
+        margin-bottom: 20px;
+        color: var(--primary-color);
+      }
+
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .resource-item {
+        text-align: center;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: var(--light-bg);
+        transition: transform 0.3s;
+      }
+
+      .resource-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .resource-icon {
+        font-size: 36px;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+      }
+
+      /* Pie de página */
+      footer {
+        background-color: var(--primary-dark);
+        color: var(--white);
+        padding: 40px 0 20px;
+        margin-top: 60px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      footer h3 {
+        color: var(--white);
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+
+      footer ul {
+        list-style: none;
+      }
+
+      footer ul li {
+        margin-bottom: 10px;
+      }
+
+      footer a {
+        color: var(--white);
+        opacity: 0.8;
+      }
+
+      footer a:hover {
+        opacity: 1;
+        text-decoration: underline;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 14px;
+        opacity: 0.8;
+      }
+
+      
+  /* Ajustes Responsivos Adicionales */
+  @media (max-width: 1024px) {
+    .hero {
+      padding: 50px 30px;
+    }
+    
+    .hero h1 {
+      font-size: 32px;
+    }
+    
+    .card-icon {
+      height: 100px;
+      font-size: 40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 20px;
+    }
+    
+    .version {
+      font-size: 14px;
+    }
+    
+    nav ul li a {
+      padding: 12px 15px;
+      font-size: 14px;
+    }
+    
+    .card-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 15px;
+    }
+    
+    .hero {
+      padding: 30px 15px;
+    }
+    
+    .hero h1 {
+      font-size: 24px;
+    }
+    
+    .hero p {
+      font-size: 14px;
+    }
+    
+    .btn {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+    
+    .section-title h2 {
+      font-size: 22px;
+    }
+    
+    .card {
+      margin-bottom: 15px;
+    }
+    
+    .card-icon {
+      height: 80px;
+      font-size: 32px;
+    }
+    
+    .card-content {
+      padding: 15px;
+    }
+    
+    .card h3 {
+      font-size: 18px;
+    }
+    
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .update-date {
+      flex: 0 0 100%;
+      font-size: 14px;
+    }
+  }
+
+  /* Mejora de legibilidad en móviles */
+  @media (max-width: 360px) {
+    html {
+      font-size: 14px;
+    }
+    
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    nav ul li a {
+      padding: 10px 12px;
+    }
+  }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        header .container {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .logo {
+          margin-bottom: 10px;
+        }
+
+        nav ul {
+          flex-direction: column;
+        }
+
+        .hero {
+          padding: 40px 20px;
+        }
+
+        .hero h1 {
+          font-size: 28px;
+        }
+
+        .hero p {
+          font-size: 16px;
+        }
+
+        .update-item {
+          flex-direction: column;
+        }
+
+        .update-date {
+          margin-bottom: 10px;
+        }
+
+        .btn {
+          display: block;
+          margin: 10px auto;
+          max-width: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">Gestión Del Adulto Mayor</div>
+        <div class="version">Manual de Usuario v1.0</div>
+      </div>
+    </header>
+
+    <nav>
+      <div class="container">
+        <ul>
+          <li><a href="index.html"class="active">Inicio</a></li>
+          <li><a href="Introduccion.html">Introducción</a></li>
+          <li><a href="PrimerosPasos.html">Primeros Pasos</a></li>
+          <li><a href="FuncionesPrincipales.html">Funciones</a></li>
+          <li><a href="Tutoriales.html">Tutoriales</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="container">
+      <!-- Sección de héroe -->
+      <section class="hero">
+        <h1>Manual de Usuario Oficial</h1>
+        <p>
+          Bienvenido a la documentación completa de BDK. Este manual le
+          proporcionará toda la información necesaria para aprovechar al máximo
+          todas las funcionalidades de nuestra aplicación.
+        </p>
+        <div class="hero-buttons">
+          <a href="PrimerosPasos.html" class="btn">Comenzar</a>
+          <a href="pdf/Manual de uso App.pdf" download class="btn secondary">Descargar PDF</a>
+        </div>
+      </section>
+
+      <!-- Secciones del manual -->
+      <section class="manual-sections">
+        <div class="section-title">
+          <h2>Contenido del Manual</h2>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">📋</div>
+            <div class="card-content">
+              <h3>Introducción</h3>
+              <p>
+                Conozca los aspectos básicos de la aplicación, sus beneficios y
+                requisitos del sistema.
+              </p>
+              <a href="Introduccion.html" class="card-link">Leer más →</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🚀</div>
+            <div class="card-content">
+              <h3>Primeros Pasos</h3>
+              <p>
+                Aprenda a instalar, configurar y comenzar a utilizar la
+                aplicación rápidamente.
+              </p>
+              <a href="PrimerosPasos.html" class="card-link">Leer más →</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">⚙️</div>
+            <div class="card-content">
+              <h3>Funciones Principales</h3>
+              <p>
+                Explore todas las funcionalidades que ofrece la aplicación para
+                mejorar su productividad.
+              </p>
+              <a href="FuncionesPrincipales.html" class="card-link">Leer más →</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">📚</div>
+            <div class="card-content">
+              <h3>Tutoriales</h3>
+              <p>
+                Siga nuestras guías paso a paso para dominar cada aspecto de la
+                aplicación.
+              </p>
+              <a href="Tutoriales.html" class="card-link">Leer más →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Actualizaciones recientes -->
+      <section class="updates">
+        <h2>Actualizaciones Recientes</h2>
+        <div class="update-list">
+          <div class="update-item">
+            <div class="update-date">15 Abril, 2025</div>
+            <div class="update-content">
+              <h3>Versión 1.0</h3>
+              <p>
+                Se hizo el ejecutable oficial de la aplicación con todas las
+                funcionalidades principales.
+              </p>
+            </div>
+          </div>
+
+          <div class="update-item">
+            <div class="update-date">17 Abril, 2025</div>
+            <div class="update-content">
+              <h3>Manual de Usuario Actualizado</h3>
+              <p>
+                Se ha actualizado la documentación con nuevos tutoriales y
+                ejemplos.
+              </p>
+            </div>
+          </div>
+
+          <div class="update-item">
+            <div class="update-date">2 Abril, 2025</div>
+            <div class="update-content">
+              <h3>Beta Testing Completado</h3>
+              <p>
+                Hemos finalizado la fase de pruebas beta con excelentes
+                resultados y comentarios.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recursos adicionales -->
+      <section class="resources">
+        <h2>Recursos Adicionales</h2>
+        <div class="resources-grid">
+          <div class="resource-item">
+            <div class="resource-icon">🎬</div>
+            <h3>Tutoriales en Video</h3>
+            <a href="Tutoriales.html">Ver videos</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>Gestión del adulto mayor</h3>
+            <p>
+              Una solución completa para gestionar los residentes de manera
+              eficiente.
+            </p>
+            <p>Versión 1.0</p>
+          </div>
+
+          <div class="footer-column">
+            <h3>Recursos</h3>
+            <ul>
+              <li><a href="pdf/Manual de uso App.pdf">Descargas</a></li>
+              <li><a href="pdf/Manual de uso App.pdf">Documentación</a></li>
+              <li><a href="Tutoriales.html">Tutoriales en Video</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Soporte</h3>
+            <ul>
+              <li><a href="PreguntasFrecunetes.html">Preguntas Frecuentes</a></li>
+              <li><a href="https://wa.me/50661636422" target="_blank">WhatsApp</a></li>
+            </ul>
+          </div>
+
+         
+        </div>
+
+        <div class="copyright">
+          <p>
+            &copy; 2025 Gestión Del Adulto Mayor. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

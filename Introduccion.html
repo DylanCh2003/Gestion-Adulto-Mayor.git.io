@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción - Manual de Usuario</title>
+    <style>
+        /* Variables de colores */
+        :root {
+            --primary-color: #2c3e50;       /* Azul oscuro elegante */
+--primary-dark: #1a252f;        /* Variante más oscura para efectos */
+--secondary-color: #7f8c8d;     /* Gris sofisticado */
+--accent-color: #c0392b;        /* Rojo vino para detalles sutiles */
+--text-color: #2d2d2d;          /* Texto principal, muy legible */
+--text-light: #5c5c5c;          /* Texto secundario */
+--light-bg: #f4f4f4;            /* Fondo suave */
+--white: #ffffff;               /* Blanco puro */
+--border-color: #dcdcdc;        /* Gris claro para bordes */
+--shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Sombra más sutil */
+
+        }
+
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Encabezado */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .version {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Navegación */
+        nav {
+            background-color: var(--primary-dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li a {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 20px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul li a.active {
+            font-weight: bold;
+            border-bottom: 3px solid var(--white);
+        }
+
+        /* Migas de pan */
+        .breadcrumbs {
+            margin: 20px 0;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Contenido principal */
+        main {
+            padding: 20px 0 40px;
+        }
+
+        .section {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-top: 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Contenido de navegación */
+        .content-nav {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .content-nav h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .content-nav ul {
+            margin-bottom: 0;
+        }
+
+        /* Características */
+        .feature-list {
+            margin: 30px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .feature-icon {
+            flex: 0 0 60px;
+            font-size: 30px;
+            text-align: center;
+            margin-right: 20px;
+        }
+
+        .feature-details {
+            flex: 1;
+        }
+
+        .feature-details h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        /* Tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--light-bg);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        /* Versiones */
+        .versions-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .version-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .version-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .version-card.highlighted {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow);
+        }
+
+        .version-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .version-description {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .version-features {
+            margin-left: 20px;
+        }
+
+        /* Imagen */
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .caption {
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Notas y advertencias */
+        .note, .tip {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .note {
+            background-color: #e7f5fe;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .tip {
+            background-color: #eafaf1;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 40px 0 20px;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            margin-top: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            color: var(--white);
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        footer h3 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        footer ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: var(--white);
+            opacity: 0.8;
+        }
+
+        footer a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Añadir estos estilos al final de la sección <style> */
+
+/* Media Queries Responsivas */
+@media (max-width: 1024px) {
+    .section {
+        padding: 25px;
+    }
+    
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 22px;
+    }
+    
+    .feature-icon {
+        font-size: 24px;
+    }
+    
+    .versions-container {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 20px;
+    }
+    
+    .version {
+        font-size: 14px;
+    }
+    
+    nav ul li a {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .breadcrumbs {
+        font-size: 12px;
+    }
+    
+    .feature-item {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .version-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    h1 {
+        font-size: 24px;
+        padding-bottom: 10px;
+    }
+    
+    h2 {
+        font-size: 20px;
+        margin-top: 25px;
+    }
+    
+    .section {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .content-nav {
+        padding: 15px;
+    }
+    
+    .feature-icon {
+        flex: 0 0 40px;
+        font-size: 20px;
+        margin-right: 15px;
+    }
+    
+    .image-container .caption {
+        font-size: 12px;
+    }
+    
+    .note, .tip {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .logo {
+        font-size: 18px;
+    }
+    
+    nav ul li a {
+        padding: 10px 12px;
+    }
+    
+    .version-card h3 {
+        font-size: 16px;
+    }
+    
+    .version-badge {
+        font-size: 12px;
+        right: 10px;
+    }
+    
+    .feature-details h3 {
+        font-size: 16px;
+    }
+    
+    table th,
+    table td {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+}
+
+/* Mejoras adicionales para tablas en móviles */
+@media screen and (max-width: 600px) {
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    table thead {
+        display: none;
+    }
+    
+    table tr {
+        display: block;
+        margin-bottom: 15px;
+        border-bottom: 2px solid var(--border-color);
+    }
+    
+    table td {
+        display: block;
+        text-align: right;
+        font-size: 13px;
+        border-bottom: 1px dotted var(--border-color);
+    }
+    
+    table td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+}
+
+/* Mejorar legibilidad en listas */
+@media (max-width: 480px) {
+    ul, ol {
+        margin-left: 15px;
+    }
+    
+    .version-features li {
+        font-size: 14px;
+    }
+}
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            .feature-item {
+                flex-direction: column;
+            }
+
+            .feature-icon {
+                margin-bottom: 15px;
+            }
+
+            .versions-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Sistema BDK</div>
+            <div class="version">Manual de Usuario v1.0</div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Introduccion.html"class="active">Introducción</a></li>
+                <li><a href="PrimerosPasos.html">Primeros Pasos</a></li>
+                <li><a href="FuncionesPrincipales.html">Funciones</a></li>
+                <li><a href="Tutoriales.html">Tutoriales</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Inicio</a> &gt; Introducción
+        </div>
+
+        <section class="section">
+            <h1>Introducción al Sistema BDK</h1>
+            <p>Bienvenido al sistema integral de gestión para adultos mayores. Esta solución tecnológica está diseñada para optimizar la administración de residentes, medicamentos, usuarios, bitácora, reportes y contactos de emergencia.</p>
+            
+            <div class="content-nav">
+                <h3>En esta sección:</h3>
+                <ul>
+                    <li><a href="#acerca-de">Acerca del Sistema</a></li>
+                    <li><a href="#caracteristicas">Funcionalidades Clave</a></li>
+                    <li><a href="#requisitos">Requisitos Técnicos</a></li>
+                    <li><a href="#modulos">Módulos Principales</a></li>
+                </ul>
+            </div>
+            
+            <h2 id="acerca-de">Acerca del Sistema</h2>
+            <p>BDK es una aplicación de escritorio desarrollada en C# con conexión a SQL Server, diseñada específicamente para satisfacer las necesidades de la institucion. Ofrece:</p>
+            
+            <ul>
+                <li>Gestión centralizada de residentes y sus datos</li>
+                <li>Seguimiento y visualizacion de su documentación</li>
+                <li>Control de medicación</li>
+                <li>Generación de reportes de los adultos mayores</li>
+            </ul>
+            
+            <div class="image-container">
+                <img src="Img/image.png" alt="Interfaz principal del sistema">
+                <p class="caption">Vista general de la interfaz principal del sistema</p>
+            </div>
+            
+            <h2 id="caracteristicas">Funcionalidades Clave</h2>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">👵</div>
+                    <div class="feature-details">
+                        <h3>Gestión de Residentes</h3>
+                        <ul>
+                            <li>Registro completo de datos personales</li>
+                            <li>Contactos de emergencia y familiares</li>
+                            <li>Control de actividades y rutinas</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">💊</div>
+                    <div class="feature-details">
+                        <h3>Control de Medicación</h3>
+                        <ul>
+                            <li>Control de dosis</li>
+                            <li>Registro de medicamentos </li>
+                            <li>Inventario y caducidad de fármacos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                
+                <div class="feature-item">
+                    <div class="feature-icon">📑</div>
+                    <div class="feature-details">
+                        <h3>Reportes y Documentación</h3>
+                        <ul>
+                            <li>Generación automática de reportes</li>
+                            <li>Formatos predefinidos para regulaciones</li>
+                            <li>Exportación a PDF</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 id="requisitos">Requisitos Técnicos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Componente</th>
+                        <th>Mínimo</th>
+                        <th>Recomendado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sistema Operativo</td>
+                        <td>Windows 10</td>
+                        <td>Windows 11</td>
+                    </tr>
+                    <tr>
+                        <td>SQL Server</td>
+                        <td>2016 Express</td>
+                        <td>2019 Standard</td>
+                    </tr>
+                    <tr>
+                        <td>Memoria RAM</td>
+                        <td>4 GB</td>
+                        <td>8 GB</td>
+                    </tr>
+                    <tr>
+                        <td>Espacio en Disco</td>
+                        <td>2 GB</td>
+                        <td>5 GB</td>
+                    </tr>
+                    <tr>
+                        <td>Resolución</td>
+                        <td>1366x768</td>
+                        <td>1920x1080</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="note">
+                <strong>Importante:</strong> Se requiere conexión a la red local para acceso a la base de datos centralizada.
+            </div>
+            
+            <h2 id="modulos">Módulos Principales</h2>
+            <div class="versions-container">
+                <div class="version-card">
+                    <h3>Gestión de Residentes</h3>
+                    <ul class="version-features">
+                        <li>Historial social</li>
+                        <li>Preferencias personales</li>
+                        <li>Contactos de emergencia</li>
+                    </ul>
+                </div>
+                
+                <div class="version-card highlighted">
+                    <div class="version-badge">Esencial</div>
+                    <h3>Historial de medicamentos</h3>
+                    <ul class="version-features">
+                        <li>Registro de medicamentos</li>
+                        <li>Control de dosis</li>
+                        <li>Asignación de medicamentos</li>
+                    </ul>
+                </div>
+                <div class="versions-container">
+                    <div class="version-card">
+                        <h3>Gestiones del adulto mayor</h3>
+                        <ul class="version-features">
+                            <li>Historial del adulto mayor durante el día</li>
+                            <li>Adjuntos de documentos</li>
+                        </ul>
+                    </div>
+            </div>
+        
+        </section>
+    </main>
+
+
+    <footer>
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-column">
+              <h3>Gestión del adulto mayor</h3>
+              <p>
+                Una solución completa para gestionar los residentes de manera
+                eficiente.
+              </p>
+              <p>Versión 1.0</p>
+            </div>
+  
+            <div class="footer-column">
+              <h3>Recursos</h3>
+              <ul>
+                <li><a href="pdf/Manual de uso App.pdf">Descargas</a></li>
+                <li><a href="pdf/Manual de uso App.pdf">Documentación</a></li>
+                <li><a href="Tutoriales.html">Tutoriales en Video</a></li>
+              </ul>
+            </div>
+  
+            <div class="footer-column">
+              <h3>Soporte</h3>
+              <ul>
+                <li><a href="PreguntasFrecunetes.html">Preguntas Frecuentes</a></li>
+                <li><a href="https://wa.me/50661636422" target="_blank">WhatsApp</a></li>
+              </ul>
+            </div>
+  
+           
+          </div>
+  
+          <div class="copyright">
+            <p>
+              &copy; 2025 Gestión Del Adulto Mayor. Todos los derechos reservados.
+            </p>
+          </div>
+        </div>
+      </footer>
+</body>
+</html>
